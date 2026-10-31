@@ -93,24 +93,14 @@ export async function POST(request: Request) {
     const file = await buildPdf(label);
     return fileResponse(file, `${BASE_NAME}_${iso}.pdf`, 'application/pdf');
   } catch (error) {
-    const detail =
-      error instanceof Error && error.message.startsWith('SAVE:')
-        ? error.message.slice('SAVE:'.length)
-        : '';
+    const saveFailed =
+      error instanceof Error &&
+      (error.message === 'Could not save this email' ||
+        error.message === 'Resume download storage is not configured');
 
-    if (detail) {
-      return NextResponse.json(
-        { error: 'The download could not be saved. Try again.' },
-        {
-          status: 503,
-          headers: {
-            'Cache-Control': 'no-store',
-            'X-Save-Error': detail.replace(/[\r\n]/g, ' ').slice(0, 300),
-          },
-        },
-      );
-    }
-
-    return jsonError(500, 'The resume could not be downloaded.');
+    return jsonError(
+      saveFailed ? 503 : 500,
+      saveFailed ? 'The download could not be saved. Try again.' : 'The resume could not be downloaded.',
+    );
   }
 }

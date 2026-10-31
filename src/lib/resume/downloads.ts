@@ -5,6 +5,11 @@ import path from 'path';
 
 const SERVER_USER_AGENT = 'arun-dev-portfolio';
 
+function serverEnv(name: string) {
+  const value = process.env[name]?.replace(/[^\x21-\x7E]/g, '');
+  return value || undefined;
+}
+
 // Supabase rejects a secret key when the request looks like a browser. Netlify
 // forwards the visitor's User-Agent, so this call uses Node's HTTP client.
 function serverFetch(input: RequestInfo | URL, init?: RequestInit): Promise<Response> {
@@ -49,8 +54,8 @@ function serverFetch(input: RequestInfo | URL, init?: RequestInit): Promise<Resp
 }
 
 export async function saveResumeDownload(email: string) {
-  const url = process.env.SUPABASE_URL?.trim();
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY?.trim();
+  const url = serverEnv('SUPABASE_URL');
+  const key = serverEnv('SUPABASE_SERVICE_ROLE_KEY');
 
   if (url && key) {
     const supabase = createClient(url, key, {
@@ -63,9 +68,8 @@ export async function saveResumeDownload(email: string) {
     const { error } = await supabase.from('resume_downloads').insert({ email });
 
     if (error) {
-      const detail = [error.code, error.message, error.hint].filter(Boolean).join(' — ');
-      console.error('resume download save failed', detail);
-      throw new Error(`SAVE:${detail || 'Could not save this email'}`);
+      console.error('resume download save failed', error.code, error.message);
+      throw new Error('Could not save this email');
     }
 
     return;
@@ -82,5 +86,5 @@ export async function saveResumeDownload(email: string) {
     return;
   }
 
-  throw new Error('SAVE:Resume download storage is not configured');
+  throw new Error('Resume download storage is not configured');
 }
