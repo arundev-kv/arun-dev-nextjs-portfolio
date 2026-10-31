@@ -1,6 +1,7 @@
 # Git-connected Netlify deploy. The Next.js runtime serves the static page and the résumé route.
 [build]
   command = "npm run build"
+  publish = ".next"
 
 [build.environment]
   NODE_VERSION = "22"

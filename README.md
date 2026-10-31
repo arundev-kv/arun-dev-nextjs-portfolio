@@ -58,7 +58,7 @@ npm run typecheck
 npm run build
 ```
 
-Connect the repository to Netlify. The included `netlify.toml` uses the Next.js runtime, which serves the static page and the download route. A drag-and-drop of a static `out/` folder cannot run the download.
+Connect the repository to Netlify. The included `netlify.toml` publishes `.next` and uses the Next.js runtime, which serves the static page and the download route. A drag-and-drop of a static `out/` folder cannot run the download.
 
 ## Structure
 
