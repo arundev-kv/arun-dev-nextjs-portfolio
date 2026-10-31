@@ -63,8 +63,9 @@ export async function saveResumeDownload(email: string) {
     const { error } = await supabase.from('resume_downloads').insert({ email });
 
     if (error) {
-      console.error('resume download save failed', error.code, error.message);
-      throw new Error('Could not save this email');
+      const detail = [error.code, error.message, error.hint].filter(Boolean).join(' — ');
+      console.error('resume download save failed', detail);
+      throw new Error(`SAVE:${detail || 'Could not save this email'}`);
     }
 
     return;
@@ -81,5 +82,5 @@ export async function saveResumeDownload(email: string) {
     return;
   }
 
-  throw new Error('Resume download storage is not configured');
+  throw new Error('SAVE:Resume download storage is not configured');
 }
