@@ -333,6 +333,7 @@ main {
 
 .hero-actions {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 1.5rem;
   margin: 2rem 0 0 9%;
@@ -3036,5 +3037,86 @@ html[data-theme='dark'] .contact-channel:hover {
 
   .mobile-dock a {
     font-size: 0.54rem;
+  }
+}
+
+.resume-dialog {
+  width: min(40rem, calc(100% - 2rem));
+}
+
+.resume-dialog .dossier-title {
+  padding: 1.6rem 0 1.2rem;
+}
+
+.resume-dialog .dossier-title h3 {
+  max-width: none;
+  font-size: clamp(2.5rem, 6vw, 4.4rem);
+}
+
+.resume-form {
+  display: grid;
+  gap: 1.1rem;
+}
+
+.resume-form label,
+.resume-note {
+  margin: 0;
+  color: var(--muted);
+  font: 0.6rem/1.4 var(--mono);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.resume-form input {
+  width: 100%;
+  border: 1px solid var(--ink);
+  background: transparent;
+  color: inherit;
+  padding: 0.95rem 1rem;
+  font: 500 1.05rem/1.3 var(--font-display), sans-serif;
+}
+
+.resume-form input:focus-visible,
+.resume-dialog .button:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 3px;
+}
+
+.resume-actions,
+.resume-choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.resume-error {
+  margin: 0;
+  font: 0.72rem/1.45 var(--mono);
+  text-transform: uppercase;
+}
+
+button.contact-channel {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid rgba(241, 239, 231, 0.65);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+button.contact-channel:nth-child(odd) {
+  border-right: 1px solid rgba(241, 239, 231, 0.65);
+}
+
+@media (max-width: 540px) {
+  .resume-dialog {
+    width: calc(100% - 1rem);
+  }
+
+  .resume-actions .button,
+  .resume-choices .button {
+    width: 100%;
   }
 }

@@ -1,9 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Static export generates a self-contained `out/` directory on `npm run build`
-  // so you can drag and drop the `out` folder directly into Netlify Drop!
-  output: 'export',
-  // Cache-bust client assets between manual Netlify Drop releases.
+  // The homepage stays static. The résumé route runs on Netlify's Next.js runtime.
   deploymentId: 'contrast-2026-10-16',
   trailingSlash: true,
   images: {
@@ -11,6 +8,14 @@ const nextConfig = {
   },
   reactStrictMode: true,
   poweredByHeader: false,
+  outputFileTracingIncludes: {
+    '/api/resume': ['./content/resume/**/*'],
+    '/api/resume/': ['./content/resume/**/*'],
+  },
+  outputFileTracingExcludes: {
+    '/api/resume': ['./.data/**/*'],
+    '/api/resume/': ['./.data/**/*'],
+  },
 };
 
 export default nextConfig;

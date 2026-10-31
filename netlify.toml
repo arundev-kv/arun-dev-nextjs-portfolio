@@ -1,7 +1,12 @@
-# Netlify configuration for Next.js Static Export (Netlify Drop & Git Deploy)
+# Git-connected Netlify deploy. The Next.js runtime serves the static page and the résumé route.
 [build]
   command = "npm run build"
-  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
 
 [[headers]]
   for = "/*"

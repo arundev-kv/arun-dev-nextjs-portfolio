@@ -22,6 +22,9 @@ yarn-error.log*
 # local env files
 .env*.local
 
+# local resume download log used until Supabase is configured
+.data/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

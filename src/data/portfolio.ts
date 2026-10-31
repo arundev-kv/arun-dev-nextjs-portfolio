@@ -54,7 +54,7 @@ export const portfolio: PortfolioData = {
       kind: 'work',
       startYear: '2021',
       period: 'Oct 2021 — Present',
-      title: 'Software Developer',
+      title: 'Senior Software Developer',
       organization: 'Zero Pixels',
       location: 'Kochi, Kerala, India',
       summary:

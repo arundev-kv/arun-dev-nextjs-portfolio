@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import ResumeDownload from '@/components/ResumeDownload';
 import { portfolio } from '@/data/portfolio';
 
 const PORTRAIT_SRC: string | null = '/images/arun-dev.png';
@@ -85,6 +86,7 @@ export default function Hero() {
             Trace the work
             <ArrowDown />
           </a>
+          <ResumeDownload variant="hero" />
           <a className="text-link" href={linkedin.href} target="_blank" rel="noreferrer">
             View LinkedIn
             <ArrowUpRight />

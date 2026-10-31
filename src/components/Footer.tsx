@@ -1,3 +1,4 @@
+import ResumeDownload from '@/components/ResumeDownload';
 import { portfolio } from '@/data/portfolio';
 
 function ArrowUpRight() {
@@ -55,6 +56,7 @@ export default function Footer() {
               <ArrowUpRight />
             </a>
           ))}
+          <ResumeDownload variant="contact" index={contactLinks.length + 1} />
         </div>
 
         <p className="contact-availability">
